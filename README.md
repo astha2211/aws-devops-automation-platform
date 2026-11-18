@@ -205,91 +205,56 @@ Includes basic Kubernetes manifests:
 
 aws-devops-automation-platform/
 
-â”‚
 
-â”œâ”€â”€ app/
+aws-devops-automation-platform/
+|
+|-- app/
+|   |-- app.py
+|   `-- requirements.txt
+|
+|-- tests/
+|   `-- test_app.py
+|
+|-- docker/
+|   `-- Dockerfile
+|
+|-- terraform/
+|   |-- main.tf
+|   |-- variables.tf
+|   |-- outputs.tf
+|   |-- provider.tf
+|   |-- terraform.tfvars.example
+|   `-- .terraform.lock.hcl
+|
+|-- monitoring/
+|   |-- prometheus.yml
+|   `-- grafana/
+|
+|-- kubernetes/
+|   |-- namespace.yaml
+|   |-- deployment.yaml
+|   `-- service.yaml
+|
+|-- scripts/
+|   |-- deploy.sh
+|   `-- backup.sh
+|
+|-- .github/
+|   `-- workflows/
+|       `-- deploy.yml
+|
+|-- docs/
+|
+|-- screenshots/
+|
+|-- docker-compose.yml
+|-- .dockerignore
+|-- .gitignore
+`-- README.md
 
-â”‚   â”œâ”€â”€ app.py
 
-â”‚   â””â”€â”€ requirements.txt
 
-â”‚
 
-â”œâ”€â”€ tests/
-
-â”‚   â””â”€â”€ test_app.py
-
-â”‚
-
-â”œâ”€â”€ docker/
-
-â”‚   â””â”€â”€ Dockerfile
-
-â”‚
-
-â”œâ”€â”€ terraform/
-
-â”‚   â”œâ”€â”€ main.tf
-
-â”‚   â”œâ”€â”€ variables.tf
-
-â”‚   â”œâ”€â”€ outputs.tf
-
-â”‚   â”œâ”€â”€ provider.tf
-
-â”‚   â”œâ”€â”€ terraform.tfvars.example
-
-â”‚   â””â”€â”€ .terraform.lock.hcl
-
-â”‚
-
-â”œâ”€â”€ monitoring/
-
-â”‚   â”œâ”€â”€ prometheus.yml
-
-â”‚   â””â”€â”€ grafana/
-
-â”‚
-
-â”œâ”€â”€ kubernetes/
-
-â”‚   â”œâ”€â”€ namespace.yaml
-
-â”‚   â”œâ”€â”€ deployment.yaml
-
-â”‚   â””â”€â”€ service.yaml
-
-â”‚
-
-â”œâ”€â”€ scripts/
-
-â”‚   â”œâ”€â”€ deploy.sh
-
-â”‚   â””â”€â”€ backup.sh
-
-â”‚
-
-â”œâ”€â”€ .github/
-
-â”‚   â””â”€â”€ workflows/
-
-â”‚       â””â”€â”€ deploy.yml
-
-â”‚
-
-â”œâ”€â”€ docs/
-
-â”œâ”€â”€ screenshots/
-
-â”œâ”€â”€ docker-compose.yml
-
-â”œâ”€â”€ Dockerfile
-
-â”œâ”€â”€ .dockerignore
-
-â”œâ”€â”€ .gitignore
-
-â””â”€â”€ README.md
 
 ```
 
