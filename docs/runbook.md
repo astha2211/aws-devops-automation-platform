@@ -148,7 +148,7 @@ Grafana local credentials:
 
 \- Username: `admin`
 
-\- Password: `[REDACTED]`
+\- Password: `Use the locally configured Grafana admin password.`
 
 
 

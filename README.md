@@ -400,8 +400,7 @@ Grafana default local credentials:
 
 
 - Username: `admin`
-
-- Password: `[REDACTED]`
+- Password: Set locally using the `GF_SECURITY_ADMIN_PASSWORD` environment variable in `.env`.
 
 
 
