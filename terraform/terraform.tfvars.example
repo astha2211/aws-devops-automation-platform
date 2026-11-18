@@ -1,0 +1,6 @@
+
+aws_region       = "ap-south-1"
+project_name     = "clouddeploy"
+environment      = "development"
+instance_type    = "t2.micro"
+allowed_ssh_cidr = "127.0.0.1/32"

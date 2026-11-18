@@ -1,0 +1,45 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clouddeploy-api
+  namespace: clouddeploy
+  labels:
+    app: clouddeploy-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: clouddeploy-api
+  template:
+    metadata:
+      labels:
+        app: clouddeploy-api
+    spec:
+      containers:
+        - name: clouddeploy-api
+          image: clouddeploy-api:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi

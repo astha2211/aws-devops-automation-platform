@@ -1,0 +1,82 @@
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+
+    image: clouddeploy-api:v1
+
+    container_name: clouddeploy-api
+
+    ports:
+      - "5000:5000"
+
+    restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+    networks:
+      - clouddeploy-network
+
+  prometheus:
+    image: prom/prometheus:latest
+
+    container_name: clouddeploy-prometheus
+
+    ports:
+      - "9090:9090"
+
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+
+    depends_on:
+      app:
+        condition: service_healthy
+
+    restart: unless-stopped
+
+    networks:
+      - clouddeploy-network
+
+  grafana:
+    image: grafana/grafana-oss:latest
+
+    container_name: clouddeploy-grafana
+
+    ports:
+      - "3000:3000"
+
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: [REDACTED]
+
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+    depends_on:
+      - prometheus
+
+    restart: unless-stopped
+
+    networks:
+      - clouddeploy-network
+
+networks:
+  clouddeploy-network:
+    driver: bridge
+
+volumes:
+  prometheus-data:
+  grafana-data:
