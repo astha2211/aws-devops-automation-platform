@@ -187,8 +187,7 @@ resource "aws_iam_role_policy" "clouddeploy_s3_policy" {
         Effect = "Allow"
         Action = [
           "s3:PutObject",
-          "s3:GetObject",
-          "s3:DeleteObject"
+          "s3:GetObject"
         ]
         Resource = "${aws_s3_bucket.clouddeploy_bucket.arn}/*"
       }
@@ -210,7 +209,11 @@ resource "aws_instance" "clouddeploy_server" {
   vpc_security_group_ids      = [aws_security_group.clouddeploy_sg.id]
   iam_instance_profile        = aws_iam_instance_profile.clouddeploy_profile.name
   associate_public_ip_address = true
-
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 1
+  }
   root_block_device {
     volume_size           = 8
     volume_type           = "gp3"
