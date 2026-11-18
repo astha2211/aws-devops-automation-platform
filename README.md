@@ -204,9 +204,6 @@ Includes basic Kubernetes manifests:
 ```text
 
 aws-devops-automation-platform/
-
-
-aws-devops-automation-platform/
 |
 |-- app/
 |   |-- app.py
